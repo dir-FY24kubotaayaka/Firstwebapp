@@ -3,6 +3,10 @@
 	<name>message_board</name>
 	<comment></comment>
 	<projects>
+		<project>first_webapp</project>
+		<project>HelloWorld</project>
+		<project>Servers</project>
+		<project>techacademy_jdbc</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
