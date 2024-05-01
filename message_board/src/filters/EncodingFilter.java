@@ -1,8 +1,6 @@
-package filter;
+package filters;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -11,27 +9,23 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
-import javax.servlet.http.HttpServletRequest;
 
 @WebFilter("/*")
-public class LogFilter extends HttpFilter implements Filter {
+public class EncodingFilter extends HttpFilter implements Filter {
 
-    public LogFilter() {
+    public EncodingFilter() {
         super();
     }
 
     public void destroy() {
     }
 
-    /**
-     * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-     */
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        chain.doFilter(request, response);
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
 
-        // アクセスされた場所と日時を記録する
-        System.out.println(((HttpServletRequest) request).getRequestURI() + ":" + LocalDateTime.now());
+        chain.doFilter(request, response);
     }
 
     public void init(FilterConfig fConfig) throws ServletException {
